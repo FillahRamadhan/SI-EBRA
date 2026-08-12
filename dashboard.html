@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - OCR Transaction</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="top-navbar">
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/256/8005/8005683.png" alt="Logo OCR" class="header-logo">
+            <h2>OCR Transaction</h2>
+        </div>
+
+        <div class="user-profile-container">
+            <div id="userProfileBtn" class="user-profile">
+                <img  id="userAvatar" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi8yNzFkZWVhOC1lMjhjLTQxYTMtYWFmNS0yOTEzZjVmNDhiZTYvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.3F2v1c-MwRpNAtP1HUXCLcEy7Yao-9oLrNyO-bU1X7w" alt="Foto Profil" class="user-avatar">
+                <span id="userName">Loading...</span>
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+            </div>
+
+            <div id="profileDropdown" class="profile-dropdown hidden">
+                <div class="dropdown-header">
+                    <span class="user-email-text" id="userEmail">-</p>
+                </div>
+                <hr>
+                <button id="btnSwitchAccount" class="dropdown-item">
+                    <i class="fas fa-sync-alt"></i> Ganti Akun
+                </button>
+                <button id="btnLogout" class="dropdown-item danger">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <div id="accountModal" class="modal-overlay hidden">
+                <div class="modal-card">
+                    <div class="modal-header">
+                        <h3>Pilih Akun</h3>
+                        <button id="btnCloseModal" class="btn-close-modal">&times;</button>
+                    </div>
+
+                    <p class="modal-subtitle">Pilih akun yang pernah kamu gunakan di perangkat ini:</p>
+
+                    <div id="savedAccountList" class="saved-account-list"></div>
+                    <hr class="modal-divider">
+                    <button id="btnAddAnotherAccount" class="btn-add-account">
+                        <i class="fas fa-user-plus"></i> Gunakan Akun Lain
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="dashboard-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-menu">
+                <a href="#" id="navBeranda" class="menu-item active"><i class="fas fa-home"></i> Beranda</a>
+                <a href="#" id="navTransaksi" class="menu-item"><i class="fas fa-file-invoice"></i> Transaksi OCR</a>
+                <a href="#" id="navData" class="menu-item"><i class="fas fa-table-list"></i> Data Transaksi</a>
+                <a href="#" id="navRiwayat" class="menu-item"><i class="fas fa-history"></i> Riwayat</a>
+                <a href="#" id="navPengaturan" class="menu-item"><i class="fas fa-cog"></i> Pengaturan</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Beranda -->
+            <section id="sectionBeranda" class="page-section">
+                <h2>Halaman Utama</h2>
+                <p>A B C</p>
+            </section>
+
+            <!-- Transaksi OCR -->
+            <section id="sectionTransaksi" class="page-section hidden">
+                <h2>Ekstraksi Bukti Transfer (OCR)</h2>
+                <p class="subtitle">Unggah gambar bukti transfer dan sistem akan mengekstraksi informasi secara otomatis.</p>
+
+                <div class="ocr-grid">
+                    <!-- Upload Box -->
+                    <div class="ocr-card">
+                        <h3>1. Upload Bukti Transfer</h3>
+                        <div class="drop-zone" id="dropZone">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <p>Drag & drop gambar di sini atau</p>
+                            <input type="file" id="fileInput" accept="image/*" hidden>
+                            <button class="btn-primary" onclick="document.getElementById('fileInput').click()">Pilih File</button>
+                        </div>
+                        <div id="filePreviewInfo" class="file-info hidden">
+                            <i class="fas fa-file-image"></i> <span id="fileName">file.jpg</span>
+                        </div>
+                        <button type="button" id="btnProsesOCR" class="btn-block btn-blue">Proses OCR</button>
+                    </div>
+
+                    <!-- Hasil Ekstraksi Form -->
+                    <div class="ocr-card">
+                        <h3>2. Hasil Ekstraksi OCR</h3>
+                        <form id="formOCR">
+                            <label>Nama Bank</label>
+                            <input type="text" id="ocrBank" class="form-control">
+                            <label>Tanggal Transaksi</label>
+                            <input type="text" id="ocrTanggal" class="form-control">
+                            <label>Nama Pengirim</label>
+                            <input type="text" id="ocrPengirim" class="form-control">
+                            <label>Nama Penerima</label>
+                            <input type="text" id="ocrPenerima" class="form-control">
+                            <label>Nominal Transfer</label>
+                            <input type="text" id="ocrNominal" class="form-control">
+                            <label>Nomor Referensi</label>
+                            <input type="text" id="ocrRef" class="form-control">
+                            <div class="button-group">
+                                <button type="button" id="btnSimpanExcel" class="btn-green">Simpan Data</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Periew Struk -->
+                    <div class="ocr-card">
+                        <h3>3. Pereiew Bukti Transfer</h3>
+                        <div class="image-preview-container">
+                            <img id="imgPreview" src="" alt="Preview Bukti Transfer" class="peview-img hidden">
+                            <p id="placeholderText">Belum ada file yang dipilih</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Transaksi -->
+             <section id="sectionData" class="page-section hidden">
+                <h2>Data</h2>
+             </section>
+
+            <!-- Riwayat -->
+            <section id="sectionRiwayat" class="page-section hidden">
+                <h2>Riwayat Transaksi</h2>
+            </section>
+
+            <!-- Pengaturan -->
+            <section id="sectionPengaturan" class="page-section hidden">
+                <h2>Pengaturan</h2>
+            </section>
+
+        </main>
+    </div>
+    <script type="module" src="beken/js/dashboard.js"></script>
+</body>
+</html>

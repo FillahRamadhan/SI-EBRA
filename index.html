@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Transaction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 1. Tampilan Awal -->
+    <div class="ppp">
+        <button id="btnMulai" class="tombol_mulai">
+            MULAI    
+        </button>
+    </div>
+    
+    <!-- 2. Sliding Sign Up/Sign In -->
+    <div id="authModal" class="modal-overlay hidden">
+        <div class="modal-wrapper">
+            <!-- Tombol Silang untuk Menutup Menu -->
+            <span id="btnClose" class="close-btn">&times;</span>
+
+            <!-- Container Sliding -->
+            <div class="container" id="slidingContainer">
+
+                <!-- Form Sign Up -->
+                <div class="form-container sign-up-container">
+                    <form action="#">
+                        <h1>Create Acccount</h1>
+                        <div class="social-container">
+                            <a href="#" class="social btn-google" title="Login via Google"><i class="fab fa-google"></i></a>
+                            <a href="#" class="social btn-github" title="Login via GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                        <span>atau pakai akunmu untuk daftar</span>
+                        <input type="text" placeholder="Name" />
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                        <button type="submit" class="btn-primary">SIGN UP</button>
+                    </form>
+                </div>
+
+                <!-- Form Sign In -->
+                <div class="form-container sign-in-container">
+                    <form action="#">
+                        <h1>Sign In</h1>
+                        <div class="social-container">
+                            <a href="#" class="social btn-google" title="Login via Google"><i class="fab fa-google"></i></a>
+                            <a href="#" class="social btn-github" title="Login via GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                        <span>atau pakai akunmu</span>
+                        <input type="email" placeholder="Email" />
+                        <input type="password" placeholder="Password" />
+                        <a href="#" class="forgot">Lupa kata sandi?</a>
+                        <button type="submit" class="btn-primary">SIGN IN</button>
+                    </form>
+                </div>
+
+                <!-- Overlay Panels -->
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-left">
+                            <h1>Selamat Datang Kembali 👋</h1>
+                            <p>pppppp</p>
+                            <button class="ghost" id="signIn">SIGN IN</button>
+                        </div>
+                        <div class="overlay-panel overlay-right">
+                            <h1>AALLLOOOOO 👋</h1>
+                            <p>djflkdnflkdaf</p>
+                            <button class="ghost" id="signUp">SIGN UP</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="beken/js/script.js"></script>
+</body>
+</html>
