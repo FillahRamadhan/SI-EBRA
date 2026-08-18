@@ -6,50 +6,83 @@
     <title>Dashboard - OCR Transaction</title>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
     <!-- Header -->
     <header class="top-navbar">
-        <div class="logo">
-            <img src="https://cdn-icons-png.flaticon.com/256/8005/8005683.png" alt="Logo OCR" class="header-logo">
-            <h2>OCR Transaction</h2>
+        <div class="logo-container">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span class="corner top-left"></span>
+                <span class="corner top-right"></span>
+                <span class="corner bottom-left"></span>
+                <span class="corner bottom-right"></span>
+            </div>
+
+            <div class="brand-text">
+                <h1><span>SI</span> EBRA</h1>
+                <p class="subtitle">Sistem Ekstraksi Bukti Transfer</p>
+            </div>
         </div>
 
-        <div class="user-profile-container">
-            <div id="userProfileBtn" class="user-profile">
-                <img  id="userAvatar" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi8yNzFkZWVhOC1lMjhjLTQxYTMtYWFmNS0yOTEzZjVmNDhiZTYvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.3F2v1c-MwRpNAtP1HUXCLcEy7Yao-9oLrNyO-bU1X7w" alt="Foto Profil" class="user-avatar">
-                <span id="userName">Loading...</span>
-                <i class="fas fa-chevron-down dropdown-icon"></i>
+        <div class="header-right-actions">
+            <div class="header-date">
+                <i class="far fa-calendar-alt"></i>
+                <span id="currentDateText">-- ------- ----</span>
             </div>
 
-            <div id="profileDropdown" class="profile-dropdown hidden">
-                <div class="dropdown-header">
-                    <span class="user-email-text" id="userEmail">-</p>
-                </div>
-                <hr>
-                <button id="btnSwitchAccount" class="dropdown-item">
-                    <i class="fas fa-sync-alt"></i> Ganti Akun
-                </button>
-                <button id="btnLogout" class="dropdown-item danger">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
-            </div>
+            <div class="header-notification" id="notifContainer" title="Notifikasi">
+                <i class="far fa-bell"></i>
+                <span id="notifBadge" class="notification-badge hidden">0</span>
 
-            <div id="accountModal" class="modal-overlay hidden">
-                <div class="modal-card">
-                    <div class="modal-header">
-                        <h3>Pilih Akun</h3>
-                        <button id="btnCloseModal" class="btn-close-modal">&times;</button>
+                <div id="notifDropdown" class="notif-dropdown hidden">
+                    <div class="notif-header">
+                        <h4>Notifikasi Ekstraksi</h4>
                     </div>
+                    <div id="notifList" class="notif-list">
 
-                    <p class="modal-subtitle">Pilih akun yang pernah kamu gunakan di perangkat ini:</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="user-profile-container">
+                <div id="userProfileBtn" class="user-profile">
+                    <img  id="userAvatar" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi8yNzFkZWVhOC1lMjhjLTQxYTMtYWFmNS0yOTEzZjVmNDhiZTYvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.3F2v1c-MwRpNAtP1HUXCLcEy7Yao-9oLrNyO-bU1X7w" alt="Foto Profil" class="user-avatar">
+                    <span id="userName">Loading...</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
 
-                    <div id="savedAccountList" class="saved-account-list"></div>
-                    <hr class="modal-divider">
-                    <button id="btnAddAnotherAccount" class="btn-add-account">
-                        <i class="fas fa-user-plus"></i> Gunakan Akun Lain
+                <div id="profileDropdown" class="profile-dropdown hidden">
+                    <div class="dropdown-header">
+                        <span class="user-email-text" id="userEmail">-</p>
+                    </div>
+                    <hr>
+                    <button id="btnSwitchAccount" class="dropdown-item">
+                        <i class="fas fa-sync-alt"></i> Ganti Akun
                     </button>
+                    <button id="btnLogout" class="dropdown-item danger">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+
+                <div id="accountModal" class="modal-overlay hidden">
+                    <div class="modal-card">
+                        <div class="modal-header">
+                            <h3>Pilih Akun</h3>
+                            <button id="btnCloseModal" class="btn-close-modal">&times;</button>
+                        </div>
+
+                        <p class="modal-subtitle">Pilih akun yang pernah kamu gunakan di perangkat ini:</p>
+
+                        <div id="savedAccountList" class="saved-account-list"></div>
+                        <hr class="modal-divider">
+                        <button id="btnAddAnotherAccount" class="btn-add-account">
+                            <i class="fas fa-user-plus"></i> Gunakan Akun Lain
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,11 +93,15 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <nav class="sidebar-menu">
-                <a href="#" id="navBeranda" class="menu-item active"><i class="fas fa-home"></i> Beranda</a>
-                <a href="#" id="navTransaksi" class="menu-item"><i class="fas fa-file-invoice"></i> Transaksi OCR</a>
-                <a href="#" id="navData" class="menu-item"><i class="fas fa-table-list"></i> Data Transaksi</a>
-                <a href="#" id="navRiwayat" class="menu-item"><i class="fas fa-history"></i> Riwayat</a>
-                <a href="#" id="navPengaturan" class="menu-item"><i class="fas fa-cog"></i> Pengaturan</a>
+                <a href="javascript:void(0);" id="navBeranda" class="menu-item active"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="javascript:void(0);" id="navTransaksi" class="menu-item"><i class="fas fa-cloud-upload"></i> Upload Bukti Transfer</a>
+                <a href="javascript:void(0);" id="navData" class="menu-item"><i class="fas fa-table-list"></i> Data Ekstraksi</a>
+                <a href="javascript:void(0);" id="navRiwayat" class="menu-item"><i class="fas fa-history"></i> Riwayat Proses</a>
+                <a href="javascript:void(0);" id="navExcel" class="menu-item"><i class="fa-solid fa-file-excel"></i> Eksport Excel</a>
+
+                <hr class="menu-divider">
+
+                <a href="javascript:void(0);" id="navPengaturan" class="menu-item"><i class="fas fa-cog"></i> Pengaturan</a>
             </nav>
         </aside>
 
@@ -73,8 +110,92 @@
 
             <!-- Beranda -->
             <section id="sectionBeranda" class="page-section">
-                <h2>Halaman Utama</h2>
-                <p>A B C</p>
+                <div class="dashboard-header">
+                    <h2>Dashboard</h2>
+                </div>
+
+                <!-- 1. Statistic Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon icon-blue">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-title">Total Bukti Transfer</span>
+                            <h3 id="statTotal">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon icon-green">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-title">Berhasil Diekstraksi</span>
+                            <h3 id="statSuccess">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon icon-orange">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-title">Perlu Diperiksa</span>
+                            <h3 id="statPending">0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Grafik & Aktivitas Terbaru -->
+                <div class="dashboard-middle-grid">
+                    <div class="dash-card">
+                        <div class="card-header">
+                            <h3>Statistik Ekstraksi (7Hari Terakhir)</h3>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="dot green"></span> Berhasil</span>
+                                <span class="legend-item"><span class="dot orange"></span> Perlu Diperiksa</span>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="extractionChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-header">
+                            <h3>Aktivitas Terbaru</h3>
+                        </div>
+                        <div class="activity-list" id="activityList">
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Tabel Data Ekstraksi Terbaru -->
+                <div class="dash-card full-width">
+                    <div class="card-header border-bottom">
+                        <h3>Data Ektraksi Terbaru</h3>
+                        <a href="#" id="linkSeeAll" class="see-all-link">Lihat semua data <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="dash-table">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Bank Tujuan</th>
+                                    <th>Nominal</th>
+                                    <th>No. Referensi</th>
+                                    <th>Waktu TF</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashboardTableBody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </section>
 
             <!-- Transaksi OCR -->
@@ -90,10 +211,16 @@
                             <i class="fas fa-cloud-upload-alt upload-icon"></i>
                             <p>Drag & drop gambar di sini atau</p>
                             <input type="file" id="fileInput" accept="image/*" hidden>
-                            <button class="btn-primary" onclick="document.getElementById('fileInput').click()">Pilih File</button>
+                            <button type="button" class="btn-primary" onclick="document.getElementById('fileInput').click()">Pilih File</button>
                         </div>
                         <div id="filePreviewInfo" class="file-info hidden">
-                            <i class="fas fa-file-image"></i> <span id="fileName">file.jpg</span>
+                            <div class="file-info-left">
+                                <i class="fas fa-file-image"></i>
+                                <span id="fileName">file.jpg</span>
+                            </div>
+                            <button type="button" id="btnRemoveFile" class="btn-remove-file" title="Hapus / Batal Upload">
+                                <i class="fas fa-times"></i>
+                            </button>
                         </div>
                         <button type="button" id="btnProsesOCR" class="btn-block btn-blue">Proses OCR</button>
                     </div>
@@ -123,8 +250,8 @@
                     <!-- Periew Struk -->
                     <div class="ocr-card">
                         <h3>3. Pereiew Bukti Transfer</h3>
-                        <div class="image-preview-container">
-                            <img id="imgPreview" src="" alt="Preview Bukti Transfer" class="peview-img hidden">
+                        <div class="img-preview-container">
+                            <img id="imgPreview" src="" alt="Preview Bukti Transfer" class="preview-img hidden">
                             <p id="placeholderText">Belum ada file yang dipilih</p>
                         </div>
                     </div>
@@ -141,9 +268,31 @@
                 <h2>Riwayat Transaksi</h2>
             </section>
 
+            <!-- Excel -->
+            <section id="sectionExcel" class="page-section hidden">
+                <h2>Export Excel</h2>
+            </section>
+
             <!-- Pengaturan -->
             <section id="sectionPengaturan" class="page-section hidden">
                 <h2>Pengaturan</h2>
+
+                <h3>Keamanan & Pemulihan Akun</h3>
+                <p>Tautkan kontak pribadi Anda untuk keperluan reset password jika lipa akun.</p>
+
+                <form id="recoveryForm">
+                    <div class="form-group">
+                        <label for="personalEmail">Email Pemulihan (Gmail/Yahoo)</label>
+                        <input type="email" id="personalEmail" placeholder="contoh: nama@gmail.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personalPhone">Nomor WhatsApp / HP</label>
+                        <input type="tel" id="personalPhone" placeholder="contoh: 081234567899" required>
+                    </div>
+
+                    <button type="submit" id="btnSaveRecovery">Simpan Pengaturan</button>
+                </form>
             </section>
 
         </main>
