@@ -1,222 +1,205 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
-    background-image: url(https://docupile.com/wp-content/uploads/2018/05/OCR.jpeg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.ppp {
+.login-body {
+    background-color: #f0f4f9;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-.tombol_mulai {
-    box-sizing: border-box;
-    background-color: #1476f7;
-    border-radius: 12px;
-    border: 4px solid #5910eb;
-    padding: 10px 20px;
-    margin: 8px;
-    width: 160px;
-    text-align: center;
-
-    font-size: xx-large;
-    font-weight: bold;
-    color: #ffffff;
-    -webkit-text-stroke: 1.5px black;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-    cursor: pointer;
-    transition: transform 0.1s ease, background-color 0.2s;
-}
-
-.tombol_mulai:hover {
-    background-color: #0b61d4;
-}
-.tombol_mulai:active {
-    transform: scale(0.95);
-}
-
-.hidden {
-    display: none !important;
-}
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.65);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-wrapper {
-    position: relative;
-}
-
-.close-btn {
-    position: absolute;
-    top: -35px;
-    right: 0px;
-    font-size: 32px;
-    color: #ffffff;
-    cursor: pointer;
-    font-weight: bold;
-    z-index: 1001;
-}
-
-.container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    position: relative;
-    overflow: hidden;
-    width: 768px;
-    max-width: 90vw;
-    min-height: 480px;
-}
-
-h1 { font-weight: bold; margin: 0; }
-p { font-size: 14px; font-weight: 100; line-height: 20px; margin: 20px 0 30px; }
-span { font-size: 12px; color: #888; margin-bottom: 15px; }
-
-a.forgot { color: #333; font-size: 12px; text-decoration: none; margin: 15px 0; }
-
-button.btn-primary, button.ghost {
+.login-card {
+    background: #ffffff;
+    padding: 50px 35px 40px;
     border-radius: 20px;
-    border: 1px solid #ff4b2b;
-    background-color: #ff4b2b;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 80ms ease-in;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    position: relative;
 }
 
-button.ghost { background-color: transparent; border-color: #ffffff;}
-
-form {
-    background-color: #ffffff;
+/* Logo & Title */
+.logo-icon {
+    width: 60px;
+    height: 60px;
+    background: #eef4ff;
+    color: #0066ff;
+    font-size: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    padding: 0 50px;
-    height: 100%;
-    text-align: center;
-}
-
-input {
-    background-color: #eee;
-    border: none;
-    padding: 12px 15px;
-    margin: 8px 0;
-    width: 100%;
-    border-radius: 4px;
-    outline: none;
-}
-
-.form-container {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
-}
-
-.sign-in-container { left: 0; width: 50%; z-index: 2; }
-.container.right-panel-active .sign-in-container { transform: translateX(100%); }
-
-.sign-up-container { left: 0; width: 50%; opacity: 0; z-index: 1; }
-.container.right-panel-active .sign-up-container {
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: show 0.6s;
-}
-
-@keyframes show {
-    0%, 49.99% { opacity: 0; z-index: 1; }
-    50%, 100% { opacity: 1; z-index: 5; }
-}
-
-.overlay-container {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.6s ease-in-out;
-    z-index: 100;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
 }
 
-.container.right-panel-active .overlay-container { transform: translateX(-100%); }
-
-.overlay {
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
-    color: #ffffff;
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
-}
-
-.container.right-panel-active .overlay { transform: translateX(50%); }
-
-.overlay-panel {
+.corner {
     position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: #0066ff;
+    border-style: solid;
+    pointer-events: none;
+}
+
+.corner.top-left {
+    top: -4px;
+    left: -4px;
+    border-width: 3.5px 0 0 3.5px;
+    border-top-left-radius: 8px;
+}
+
+.corner.top-right {
+    top: -4px;
+    right: -4px;
+    border-width: 3.5px 3.5px 0 0;
+    border-top-right-radius: 8px;
+}
+
+.corner.bottom-left {
+    bottom: -4px;
+    left: -4px;
+    border-width: 0 0 3.5px 3.5px;
+    border-bottom-left-radius: 8px;
+}
+
+.corner.bottom-right {
+    bottom: -4px;
+    right: -4px;
+    border-width: 0 3.5px 3.5px 0;
+    border-bottom-right-radius: 8px;
+}
+
+.logo-container h1 {
+    font-size: 28px;
+    color: #1e293b;
+    font-weight: 800;
+}
+
+.logo-container h1 span {
+    color: #0066ff;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* Divider */
+.divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 20px 0;
+    position: relative;
+}
+
+.divider .dot {
+    width: 6px;
+    height: 6px;
+    background: #0066ff;
+    border-radius: 50%;
+    position: absolute;
+    top: -2.5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.instruction {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+/* Input Inputan */
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0066ff;
+    font-size: 16px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px 12px 42px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    transition: border 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #0066ff;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+/* Options */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.remember-me {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    text-align: center;
-    top: 0;
-    height: 100%;
-    width: 50%;
-    color: #ffffff;
-    transform: translateX(0);
-    transition: transform 0.6s ease-in-out;
+    gap: 6px;
+    color: #64748b;
+    cursor: pointer;
 }
 
-.overlay-left { transform: translateX(-20%); }
-.container.right-panel-active .overlay-left { transform: translateX(0); }
-
-.overlay-right { right: 0; transform: translateX(0); }
-.container.right-panel-active .overlay-right { transform: translateX(20%); }
-
-.sosial-container { margin: 20px 0; }
-.sosial-container a {
-    border: 1px solid #dddddd;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
-    height: 40px;
-    width: 40px;
-    color: #333;
+.forgot-pass {
+    color: #0066ff;
     text-decoration: none;
+    font-weight: 600;
+}
+
+/* Button */
+.btn-masuk {
+    width: 100%;
+    padding: 12px;
+    background: #0066ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-masuk:hover {
+    background: #0052cc;
+}
+
+.login-footer {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #94a3b8;
 }
