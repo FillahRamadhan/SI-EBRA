@@ -3,78 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCR Transaction</title>
+    <title>SI EBRA - Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="login-body">
 
-    <!-- 1. Tampilan Awal -->
-    <div class="ppp">
-        <button id="btnMulai" class="tombol_mulai">
-            MULAI    
-        </button>
-    </div>
-    
-    <!-- 2. Sliding Sign Up/Sign In -->
-    <div id="authModal" class="modal-overlay">
-        <div class="modal-wrapper">
-            <!-- Tombol Silang untuk Menutup Menu -->
-            <span id="btnClose" class="close-btn">&times;</span>
-
-            <!-- Container Sliding -->
-            <div class="container" id="slidingContainer">
-
-                <!-- Form Sign Up -->
-                <div class="form-container sign-up-container">
-                    <form action="#">
-                        <h1>Create Acccount</h1>
-                        <div class="social-container">
-                            <a href="#" class="social btn-google" title="Login via Google"><i class="fab fa-google"></i></a>
-                            <a href="#" class="social btn-github" title="Login via GitHub"><i class="fab fa-github"></i></a>
-                        </div>
-                        <span>atau pakai akunmu untuk daftar</span>
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <button type="submit" class="btn-primary">SIGN UP</button>
-                    </form>
-                </div>
-
-                <!-- Form Sign In -->
-                <div class="form-container sign-in-container">
-                    <form action="#">
-                        <h1>Sign In</h1>
-                        <div class="social-container">
-                            <a href="#" class="social btn-google" title="Login via Google"><i class="fab fa-google"></i></a>
-                            <a href="#" class="social btn-github" title="Login via GitHub"><i class="fab fa-github"></i></a>
-                        </div>
-                        <span>atau pakai akunmu</span>
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" />
-                        <a href="#" class="forgot">Lupa kata sandi?</a>
-                        <button type="submit" class="btn-primary">SIGN IN</button>
-                    </form>
-                </div>
-
-                <!-- Overlay Panels -->
-                <div class="overlay-container">
-                    <div class="overlay">
-                        <div class="overlay-panel overlay-left">
-                            <h1>Selamat Datang Kembali 👋</h1>
-                            <p>pppppp</p>
-                            <button class="ghost" id="signIn">SIGN IN</button>
-                        </div>
-                        <div class="overlay-panel overlay-right">
-                            <h1>AALLLOOOOO 👋</h1>
-                            <p>djflkdnflkdaf</p>
-                            <button class="ghost" id="signUp">SIGN UP</button>
-                        </div>
-                    </div>
-                </div>
-
+    <div class="login-card">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fa-solid fa-file-invoice"></i>
+                <span class="corner top-left"></span>
+                <span class="corner top-right"></span>
+                <span class="corner bottom-left"></span>
+                <span class="corner bottom-right"></span>
             </div>
+            <h1><span>SI</span> EBRA</h1>
+            <p class="subtitle">Sistem Ekstraksi Bukti Transfer</p>
         </div>
+
+        <div class="divider">
+            <span class="dot"></span>
+        </div>
+
+        <p class="instruction">Masukkan nomor induk karyawan dan password untuk masuk</p>
+
+        <!-- Form Login -->
+        <form id="signInForm">
+            <div class="input-group">
+                <i class="fa-solid fa-address-card input-icon"></i>
+                <input type="text" id="nikInput" placeholder="Nomor Induk Karyawan" required> 
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" id="passwordInput" placeholder="Password" required>
+                <i class="fa-regular fa-eye-slash toggle-password" id="togglePassword"></i>
+            </div>
+
+            <div class="form-options">
+                <label class="remember-me">
+                    <input type="checkbox" id="rememberMe">
+                    <span>Ingat saya</span>
+                </label>
+                <a href="#" class="forgot-pass">Lupa password?</a>
+            </div>
+
+            <button type="submit" class="btn-masuk">
+                <i class="fa-solid fa-right-to-bracket"></i> Masuk
+            </button>
+        </form>
+
+        <footer class="login-footer">
+            © 2026 SI EBRA. All rights reserved.
+        </footer>
     </div>
 
     <script type="module" src="beken/js/script.js"></script>
